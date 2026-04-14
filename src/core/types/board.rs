@@ -1,3 +1,4 @@
+use num_enum::TryFromPrimitive;
 use std::ops::{BitAnd, BitAndAssign, BitOr, BitOrAssign, BitXor, BitXorAssign, Not};
 
 #[derive(Copy, Clone, Eq, PartialEq, PartialOrd, Hash, Debug, Default)]
@@ -76,4 +77,17 @@ impl Not for BitBoard {
     fn not(self) -> Self {
         BitBoard(!self.0)
     }
+}
+
+#[derive(Copy, Clone, Eq, PartialEq, Hash, Debug, TryFromPrimitive)]
+#[repr(i8)]
+pub enum Direction {
+    North = 8,
+    South = -8,
+    East = 1,
+    West = -1,
+    NorthEast = 9,
+    NorthWest = 7,
+    SouthEast = -7,
+    SouthWest = -9,
 }
