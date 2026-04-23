@@ -3,6 +3,7 @@ pub mod chess_move;
 pub mod color;
 pub mod direction;
 pub mod file;
+pub mod move_flags;
 pub mod piece;
 pub mod piece_type;
 pub mod rank;
