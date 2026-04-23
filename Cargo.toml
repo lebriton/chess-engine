@@ -6,6 +6,7 @@ edition = "2024"
 [dependencies]
 bitfield = "0.19.4"
 bitflags = "2.11.0"
+derive_more = { version = "2.1.1", features = ["add", "add_assign", "from", "into", "not"] }
 num_enum = "0.7.6"
 strum = "0.28"
 strum_macros = "0.28"

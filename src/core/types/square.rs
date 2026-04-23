@@ -1,6 +1,8 @@
+use derive_more::{From, Into};
+
 use crate::core::types::{file::File, rank::Rank};
 
-#[derive(Copy, Clone, Eq, PartialEq, PartialOrd, Hash, Debug, Default)]
+#[derive(Copy, Clone, Eq, PartialEq, PartialOrd, Hash, Debug, Default, From, Into)]
 pub struct Square(u8);
 
 impl Square {
