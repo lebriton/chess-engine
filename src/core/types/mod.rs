@@ -1,3 +1,9 @@
-mod board;
-mod chess_move;
-mod piece;
+pub mod bitboard;
+pub mod chess_move;
+pub mod color;
+pub mod direction;
+pub mod file;
+pub mod piece;
+pub mod piece_type;
+pub mod rank;
+pub mod square;

@@ -1,13 +1,21 @@
-use num_enum::TryFromPrimitive;
 use std::ops::{BitAnd, BitAndAssign, BitOr, BitOrAssign, BitXor, BitXorAssign, Not};
 
+use crate::core::types::square::Square;
+
 #[derive(Copy, Clone, Eq, PartialEq, PartialOrd, Hash, Debug, Default)]
-pub struct BitBoard(pub u64);
+pub struct BitBoard(u64);
 
 impl BitBoard {
+    pub const EMPTY: Self = BitBoard(0);
+
+    #[inline]
+    pub fn is_empty(self) -> bool {
+        self.0 == 0
+    }
+
     #[inline]
     pub fn lsb(self) -> Option<u8> {
-        if self.0 == 0 {
+        if self.is_empty() {
             None
         } else {
             Some(self.0.trailing_zeros() as u8)
@@ -79,15 +87,9 @@ impl Not for BitBoard {
     }
 }
 
-#[derive(Copy, Clone, Eq, PartialEq, Hash, Debug, TryFromPrimitive)]
-#[repr(i8)]
-pub enum Direction {
-    North = 8,
-    South = -8,
-    East = 1,
-    West = -1,
-    NorthEast = 9,
-    NorthWest = 7,
-    SouthEast = -7,
-    SouthWest = -9,
+impl From<Square> for BitBoard {
+    #[inline]
+    fn from(square: Square) -> Self {
+        BitBoard(1u64 << square.index())
+    }
 }
