@@ -4,6 +4,8 @@ use derive_more::{
 
 use crate::core::types::square::Square;
 
+const EMPTY_VALUE: u64 = 0;
+
 #[derive(
     Copy,
     Clone,
@@ -12,7 +14,6 @@ use crate::core::types::square::Square;
     PartialOrd,
     Hash,
     Debug,
-    Default,
     BitAnd,
     BitAndAssign,
     BitOr,
@@ -26,11 +27,16 @@ use crate::core::types::square::Square;
 pub struct BitBoard(u64);
 
 impl BitBoard {
-    pub const EMPTY: Self = BitBoard(0);
+    pub const EMPTY: Self = BitBoard(EMPTY_VALUE);
+
+    #[inline]
+    pub fn intersects(self, other: BitBoard) -> bool {
+        (self & other).0 != EMPTY_VALUE
+    }
 
     #[inline]
     pub fn is_empty(self) -> bool {
-        self.0 == 0
+        self.0 == EMPTY_VALUE
     }
 
     #[inline]
@@ -53,6 +59,6 @@ impl BitBoard {
 impl From<Square> for BitBoard {
     #[inline]
     fn from(square: Square) -> Self {
-        BitBoard(1u64 << square.index())
+        Self(1u64 << square.index())
     }
 }

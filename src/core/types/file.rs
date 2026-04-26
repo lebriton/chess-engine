@@ -1,11 +1,21 @@
-use num_enum::{FromPrimitive, IntoPrimitive};
+use num_enum::{IntoPrimitive, TryFromPrimitive};
 use strum::EnumCount;
-use strum_macros::EnumCount as EnumCountMacro;
+use strum_macros::{EnumCount as EnumCountMacro, EnumIter};
 
-#[derive(Copy, Clone, Eq, PartialEq, Hash, Debug, EnumCountMacro, FromPrimitive, IntoPrimitive)]
+#[derive(
+    Copy,
+    Clone,
+    Eq,
+    PartialEq,
+    Hash,
+    Debug,
+    EnumCountMacro,
+    EnumIter,
+    IntoPrimitive,
+    TryFromPrimitive,
+)]
 #[repr(u8)]
 pub enum File {
-    #[default]
     A = 0,
     B = 1,
     C = 2,

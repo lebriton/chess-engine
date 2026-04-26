@@ -1,6 +1,9 @@
 use bitflags::bitflags;
 
+use crate::impl_bitflags_u8;
+
 bitflags! {
+#[derive(Copy, Clone, Eq, PartialEq, Hash, Debug)]
     pub struct MoveFlags: u8 {
         const NORMAL = 1 << 0;
         const PROMOTION = 1 << 1;
@@ -9,14 +12,4 @@ bitflags! {
     }
 }
 
-impl From<u8> for MoveFlags {
-    fn from(v: u8) -> Self {
-        MoveFlags::from_bits_truncate(v)
-    }
-}
-
-impl From<MoveFlags> for u8 {
-    fn from(flags: MoveFlags) -> Self {
-        flags.bits()
-    }
-}
+impl_bitflags_u8!(MoveFlags);

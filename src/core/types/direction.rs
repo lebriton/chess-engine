@@ -1,9 +1,8 @@
-use num_enum::{FromPrimitive, IntoPrimitive};
+use num_enum::{IntoPrimitive, TryFromPrimitive};
 
-#[derive(Copy, Clone, Eq, PartialEq, Hash, Debug, FromPrimitive, IntoPrimitive)]
+#[derive(Copy, Clone, Eq, PartialEq, Hash, Debug, IntoPrimitive, TryFromPrimitive)]
 #[repr(i8)]
 pub enum Direction {
-    #[default]
     North = 8,
     South = -8,
     East = 1,

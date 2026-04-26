@@ -1,4 +1,5 @@
 pub mod bitboard;
+pub mod castling_availability;
 pub mod chess_move;
 pub mod color;
 pub mod direction;
