@@ -11,16 +11,6 @@ use anyhow::{Result, anyhow};
 
 pub const STARTING_POSITION: &str = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 
-impl Color {
-    pub fn from_fen(b: u8) -> Result<Self> {
-        match b {
-            b'b' => Ok(Self::Black),
-            b'w' => Ok(Self::White),
-            _ => Err(anyhow!("invalid value")),
-        }
-    }
-}
-
 impl Board {
     pub fn from_fen(s: &str) -> Result<Self> {
         ensure_ascii!(s);
@@ -91,6 +81,16 @@ impl CastlingAvailability {
         }
 
         Ok(castling_availability)
+    }
+}
+
+impl Color {
+    pub fn from_fen(b: u8) -> Result<Self> {
+        match b {
+            b'b' => Ok(Self::Black),
+            b'w' => Ok(Self::White),
+            _ => Err(anyhow!("invalid value")),
+        }
     }
 }
 
