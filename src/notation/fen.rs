@@ -49,7 +49,7 @@ impl BoardSquares {
                     file_idx += ascii_digit
                 } else {
                     let piece = Piece::from_fen(c)?;
-                    let square = Square::from_coords(file_idx, rank_idx);
+                    let square = Square::try_from_coords(file_idx, rank_idx);
                     board_squares.set_piece(piece, square);
                     file_idx += 1;
                 }
